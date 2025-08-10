@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Samitha Muthyala — Cybersecurity Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#0f1724; --bg2:#071029; --accent:#7c3aed; --accent-2:#06b6d4; --glass: rgba(255,255,255,0.06);
+      --card:#0b1220; --muted:rgba(255,255,255,0.6); --glass-border: rgba(255,255,255,0.06);
+      --radius:18px; --shadow: 0 8px 30px rgba(2,6,23,0.7);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body,#app{height:100%}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#E6EEF3;background:linear-gradient(135deg,var(--bg1),var(--bg2));-webkit-font-smoothing:antialiased; scroll-behavior:smooth;}
+    .orb{position:fixed;filter:blur(60px);opacity:0.55;mix-blend-mode:screen;pointer-events:none}
+    .orb.one{width:420px;height:420px;background:radial-gradient(circle at 30% 30%,var(--accent),transparent 40%);left:-80px;top:-60px;animation:float 12s ease-in-out infinite}
+    .orb.two{width:360px;height:360px;background:radial-gradient(circle at 60% 60%,var(--accent-2),transparent 45%);right:-90px;bottom:-70px;animation:float 14s ease-in-out infinite;animation-delay:2s}
+    @keyframes float{0%,100%{transform:translateY(-8px) translateX(0) scale(1)}50%{transform:translateY(18px) translateX(8px) scale(1.04)}}
+    .wrap{max-width:1100px;margin:48px auto;padding:36px;border-radius:22px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);box-shadow:var(--shadow);backdrop-filter:blur(6px);border:1px solid var(--glass-border)}
+    header{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-family:'JetBrains Mono',monospace}
+    .brand h1{font-size:1.15rem;letter-spacing:0.6px}
+    .brand p{font-size:0.78rem;color:var(--muted)}
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:600;font-size:0.9rem}
+    nav a:hover{background:linear-gradient(90deg, rgba(124,58,237,0.12), rgba(6,182,212,0.08));color:white;transform:translateY(-2px)}
+    .hero{display:grid;grid-template-columns:1fr 380px;gap:28px;margin-top:28px;align-items:center}
+    .intro{padding:26px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid var(--glass-border)}
+    .eyebrow{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);color:var(--muted);font-weight:600;font-size:0.78rem}
+    h2{font-size:2rem;margin-top:12px}
+    p.lead{margin-top:12px;color:var(--muted);line-height:1.5}
+    .cta-row{display:flex;gap:12px;margin-top:18px}
+    .btn{padding:10px 14px;border-radius:12px;border:0;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;text-align:center}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;box-shadow:0 10px 30px rgba(7,10,20,0.6);}
+    .btn.ghost{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.04)}
+    .card{padding:18px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid var(--glass-border);display:flex;flex-direction:column;gap:12px;align-items:center}
+    .avatar{width:120px;height:120px;border-radius:20px;background:linear-gradient(135deg,#fff2 0%, #fff0 60%), url('profile.jpg.jpg') center/cover no-repeat;box-shadow:0 8px 24px rgba(7,12,20,0.7)}
+    .name{font-weight:800;font-size:1.05rem}
+    .role{color:var(--muted);font-weight:600}
+    .skill-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+    .chip{padding:8px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-weight:700;font-size:0.85rem}
+    section{margin-top:28px}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .glass{padding:18px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);border:1px solid var(--glass-border)}
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .proj{padding:14px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.01), transparent);cursor:pointer;transition:transform .35s, box-shadow .35s}
+    .proj:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 18px 40px rgba(2,6,23,0.6)}
+    .proj h3{font-size:1rem}
+    .proj p{color:var(--muted);font-size:0.9rem}
+    .reveal{opacity:0;transform:translateY(14px);transition:transform .8s,opacity .8s}
+    .reveal.show{opacity:1;transform:none}
+    .skill{display:flex;flex-direction:column;gap:8px}
+    .bar{height:10px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden}
+    .fill{height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width 1.5s}
+    .contact-form{display:flex;flex-direction:column;gap:12px}
+    input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:white}
+    textarea{min-height:120px}
+    .copy-hint{font-size:0.82rem;color:var(--muted)}
+    footer{margin-top:22px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.02);display:flex;justify-content:space-between;align-items:center}
+    @media (max-width:900px){.hero{grid-template-columns:1fr;}.projects{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <main class="wrap" id="app">
+    <header>
+      <div class="brand">
+        <div class="logo">SM</div>
+        <div>
+          <h1>Samitha Muthyala</h1>
+          <p>BCA Student • Cybersecurity Intern</p>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+    <section class="hero">
+      <div class="intro glass">
+        <span class="eyebrow">Cybersecurity Enthusiast</span>
+        <h2>Specializing in <span id="typed"></span></h2>
+        <p class="lead">Highly motivated BCA student with strong analytical skills, experienced in malware analysis, threat intelligence, and developing tools such as Homograph Detection, Homograph Link Generator, and phishing prevention utilities.</p>
+        <div class="cta-row">
+          <a href="Resume.pdf.pdf" download class="btn primary">Download Resume</a>
+          <a href="#contact" class="btn ghost">Contact Me</a>
+        </div>
+      </div>
+      <aside class="card">
+        <div class="avatar"></div>
+        <div class="name">Samitha Muthyala</div>
+        <div class="role">Cybersecurity Intern</div>
+        <div class="skill-chips">
+          <span class="chip">Malware Analysis</span>
+          <span class="chip">Threat Intelligence</span>
+          <span class="chip">Homograph Tools</span>
+          <span class="chip">Python</span>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about" class="reveal glass">
+      <h3>About Me</h3>
+      <p>Currently pursuing a BCA at Christ Academy Institute for Advanced Studies, I have hands-on internship experience with cybersecurity tools and research. I specialize in analyzing threats, developing security PoCs, and documenting technical findings for knowledge sharing.</p>
+    </section>
+
+    <section id="education" class="reveal glass">
+      <h3>Education</h3>
+      <ul style="list-style:none; padding:0; line-height:1.6;">
+        <li><strong>Bachelor of Computer Applications (BCA)</strong> — Christ Academy Institute for Advanced Studies (2023 – Present)</li>
+        <li><strong>Higher Secondary Education</strong> — Andhra Pradesh Board, 2022</li>
+        <li><strong>Secondary Education</strong> — Andhra Pradesh Board, 2020</li>
+      </ul>
+    </section>
+
+    <section id="certificates" class="reveal glass">
+      <h3>Certificates</h3>
+      <ul style="list-style:none; padding:0; line-height:1.6;">
+        <li>Cyber Security Global Virtual Internship</li>
+        <li>Cybersecurity Job Simulation – PwC Switzerland</li>
+        <li>Cybersecurity Job Simulation – Deloitte Australia</li>
+        <li>Entry-Level Cybersecurity Training</li>
+        <li>Defensive Security and Cyber Risk</li>
+        <li>Mobile Platform, IoT, and OT Hacking</li>
+        <li>Defensive Security Operations</li>
+      </ul>
+    </section>
+
+    <section id="projects" class="reveal">
+      <h3>Internship & Project Highlights</h3>
+      <div class="projects">
+        <article class="proj">
+          <h3>Homograph Detection Tool</h3>
+          <p>Identifies spoofed domains to prevent phishing attacks.</p>
+        </article>
+        <article class="proj">
+          <h3>Homograph Link Generator</h3>
+          <p>Tool for simulating malicious domain variations.</p>
+        </article>
+        <article class="proj">
+          <h3>Malware Analysis PoC</h3>
+          <p>Hands-on investigation using PEStudio, Wireshark, and sandboxing.</p>
+        </article>
+        <article class="proj">
+          <h3>Threat Intelligence Dashboard</h3>
+          <p>Interactive platform for visualizing Indicators of Compromise.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" class="reveal">
+      <h3>Skills</h3>
+      <div class="grid">
+        <div class="glass skill">
+          <strong>Cybersecurity</strong>
+          <div class="bar"><div class="fill" data-value="90%"></div></div>
+          <div>Malware Analysis, Threat Intelligence, Vulnerability Assessment</div>
+        </div>
+        <div class="glass skill">
+          <strong>Technical</strong>
+          <div class="bar"><div class="fill" data-value="80%"></div></div>
+          <div>HTML/CSS, Python, Data Analysis</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="reveal">
+      <h3>Contact</h3>
+      <div class="grid">
+        <div class="glass contact-form">
+          <input type="text" id="name" placeholder="Your name" />
+          <input type="email" id="email" placeholder="you@example.com" />
+          <textarea id="message" placeholder="Your message"></textarea>
+          <button class="btn primary" id="sendBtn">Send Message</button>
+          <div class="copy-hint">Email: <strong>samithamuthyala@gmail.com</strong></div>
+          <div class="copy-hint">LinkedIn: <a href="https://linkedin.com/in/samitha-muthyala-40454b285" target="_blank">Profile</a></div>
+        </div>
+      </div>
+    </section>
+<footer>
+      <div>© <span id="year"></span> Samitha Muthyala </div>
+      <div>Made with HTML, CSS & JavaScript</div>
+    </footer>
+    
+  </main>
+
+  <script>
+    const $ = s => document.querySelector(s);
+    const phrases = ["secure systems","cyber tools","malware analysis","threat intelligence"];
+    let pIndex=0, char=0, forward=true;
+    const typed = $('#typed');
+    function tick(){
+      const current = phrases[pIndex];
+      if(forward){char++;if(char>current.length){forward=false;setTimeout(tick,900);return}}
+      else {char--;if(char<0){forward=true;pIndex=(pIndex+1)%phrases.length;setTimeout(tick,220);return}}
+      typed.textContent = current.slice(0,char);
+      setTimeout(tick, forward?60:30);
+    }
+    tick();
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+          entry.target.querySelectorAll('.fill').forEach(f=>{f.style.width = f.dataset.value;})
+        }
+      })
+    },{threshold:0.15});
+    document.querySelectorAll('.reveal').forEach(r=>observer.observe(r));
+  </script>
+</body>
+</html>
